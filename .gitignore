@@ -6,6 +6,7 @@ react-client/build/
 # env file that stores API keys
 .env
 
+
 # Logs
 logs
 *.log
