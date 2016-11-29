@@ -158,6 +158,10 @@ class App extends React.Component {
                       src={resizedImageLink} />
                     )
                   });
+    var bigPic;
+    if(this.state.bigPic !== '') {
+      bigPic =  (<img id={this.state.bigPic.split('.')[0]} crossOrigin="anonymous" src={"https://s3.amazonaws.com/vrpics/"+this.state.bigPic} />)
+    }
     if (this.props.router.location.pathname.indexOf('/signup') >= 0) {
       return (
         <SignUp
@@ -202,7 +206,7 @@ class App extends React.Component {
          */
 
       return (
-          <a-scene canvas="height: 100; width: 100">
+          <Scene>
             <Camera>
               <a-cursor
                 animation__click="property: scale; easing: easeOutQuad; startEvents: click; from: 2 2 2; to: 1 1 1; dur: 200"
@@ -213,10 +217,8 @@ class App extends React.Component {
 
 
             <a-assets>
-
               {images}
-              <img id={this.state.bigPic.split('.')[0]} crossOrigin="anonymous" src={"https://s3.amazonaws.com/vrpics/"+this.state.bigPic} />
-              
+              {bigPic}
               <img id="lobby-_1" crossOrigin="anonymous" src="https://s3.amazonaws.com/vrpics/lr2.jpg" />
 
               <img id="close" crossOrigin="anonymous" src="https://s3.amazonaws.com/vrpics/icon.png" />
@@ -229,7 +231,7 @@ class App extends React.Component {
 
             </a-assets>
             {vrView}
-          </a-scene>
+          </Scene>
         );
     }
   }
